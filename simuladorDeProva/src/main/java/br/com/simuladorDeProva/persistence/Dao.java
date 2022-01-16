@@ -11,15 +11,17 @@ public class Dao {
 	PreparedStatement stmt;
 	ResultSet rs;
 	
+//	Conexão com MySQL
 //	public void open() throws Exception{
 //		Class.forName("com.mysql.cj.jdbc.Driver");
-//		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdprovaaluno",
+//		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bsimuladordeprova",
 //				"root", "senha");
 //	}
 	
+//	Conexão com Postgres
 	public void open() throws Exception{
 		Class.forName("org.postgresql.Driver");
-		con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdprovaaluno", "postgres", "senha");
+		con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/simuladordeprova", "postgres", "senha");
 	}
 	
 	public void close() throws Exception {

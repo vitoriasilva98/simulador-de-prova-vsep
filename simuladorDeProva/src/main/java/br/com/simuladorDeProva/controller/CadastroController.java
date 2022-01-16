@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.simuladorDeProva.dto.request.ProvaRequest;
+import br.com.simuladorDeProva.entity.Aluno;
 import br.com.simuladorDeProva.persistence.AlunoDao;
 
 @WebServlet("/CadastroController")
@@ -30,14 +31,22 @@ public class CadastroController extends HttpServlet {
 
 		try {
 
-			ProvaRequest requestobj = new ProvaRequest();
-			requestobj.oAluno(request.getParameter("nomeAluno"), request.getParameter("email"));
+			String email = request.getParameter("email");
+			Aluno existe = new AlunoDao().findByAluno(email);
 
-			AlunoDao aludao = new AlunoDao();
-			Integer chave = aludao.createAluno(requestobj);
+			if (existe == null) {
+				ProvaRequest requestobj = new ProvaRequest();
+				requestobj.oAluno(request.getParameter("nomeAluno"), request.getParameter("email"));
 
-			request.setAttribute("obj", requestobj);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+				AlunoDao aludao = new AlunoDao();
+				aludao.createAluno(requestobj);
+
+				request.setAttribute("obj", requestobj);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				request.setAttribute("msg", "Usuário já existente! Email já cadastrado no sistema.");
+				request.getRequestDispatcher("saidaerro.jsp").forward(request, response);
+			}
 
 		} catch (Exception ex) {
 

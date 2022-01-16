@@ -1,12 +1,7 @@
 package br.com.simuladorDeProva.persistence;
 
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.simuladorDeProva.dto.request.ProvaRequest;
 import br.com.simuladorDeProva.entity.Aluno;
-import br.com.simuladorDeProva.entity.Prova;
 
 public class AlunoDao extends Dao {
 
@@ -27,20 +22,15 @@ public class AlunoDao extends Dao {
 		return aluno;
 	}
 
-	public Integer createAluno(ProvaRequest pr) throws Exception {
+	public void createAluno(ProvaRequest pr) throws Exception {
 		open();
-		Integer chave = 0;
 		con.setAutoCommit(false);
 
 		try {
-			stmt = con.prepareStatement("insert into Aluno (nomeAluno, email) values(?, ?)",
-					PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt = con.prepareStatement("insert into Aluno (nomeAluno, email) values(?, ?)");
 			stmt.setString(1, pr.getAluno().getNomeAluno());
 			stmt.setString(2, pr.getAluno().getEmail());
 			stmt.executeUpdate();
-			rs = stmt.getGeneratedKeys();
-			rs.next();
-			chave = rs.getInt(1);
 			stmt.close();
 			con.setAutoCommit(true);
 		} catch (Exception ex) {
@@ -48,7 +38,6 @@ public class AlunoDao extends Dao {
 		} finally {
 			close();
 		}
-		return chave;
 	}
 
 	public void updateAlunoProva(Integer idProva, String email) throws Exception {

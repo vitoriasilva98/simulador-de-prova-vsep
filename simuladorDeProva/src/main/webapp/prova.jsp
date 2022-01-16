@@ -45,19 +45,19 @@
 									out.print("<h5> " + (i + 1) + ". " + listaquestao.get(i).getPergunta() + "</h5><br>");
 
 									out.print("<div class='form-check'>" + "<input class='form-check-input' type='radio' name='alternativa" + i + "'"
-									+ "id='alternativaA' value='A'> <label" + "class='form-check-label' for='alternativaA'> A. "
+									+ "id='alternativaA' value='A' required> <label" + "class='form-check-label' for='alternativaA'> A. "
 									+ listaquestao.get(i).getAlternativaA() + "</label>" + "</div>");
 
 									out.print("<div class='form-check'>" + "<input class='form-check-input' type='radio' name='alternativa" + i + "'"
-									+ "id='alternativaB' value='B'> <label" + "class='form-check-label' for='alternativaB'> B. "
+									+ "id='alternativaB' value='B' required> <label" + "class='form-check-label' for='alternativaB'> B. "
 									+ listaquestao.get(i).getAlternativaB() + "</label>" + "</div>");
 
 									out.print("<div class='form-check'>" + "<input class='form-check-input' type='radio' name='alternativa" + i + "'"
-									+ "id='alternativaC' value='C'> <label" + "class='form-check-label' for='alternativaC'> C. "
+									+ "id='alternativaC' value='C' required> <label" + "class='form-check-label' for='alternativaC'> C. "
 									+ listaquestao.get(i).getAlternativaC() + "</label>" + "</div>");
 
 									out.print("<div class='form-check'>" + "<input class='form-check-input' type='radio' name='alternativa" + i + "'"
-									+ "id='alternativaD' value='D'> <label" + "class='form-check-label' for='alternativaD'> D. "
+									+ "id='alternativaD' value='D' required> <label" + "class='form-check-label' for='alternativaD'> D. "
 									+ listaquestao.get(i).getAlternativaD() + "</label>" + "</div><br>");
 
 								}
