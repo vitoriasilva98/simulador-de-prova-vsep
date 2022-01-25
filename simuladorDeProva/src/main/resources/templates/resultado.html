@@ -1,0 +1,98 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Portal Faculdade SP</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<style>
+		.input-group-text {
+			height: 40px;
+		}
+
+		input {
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="bg-dark p-5 text-white text-center">
+		<h1>Portal Faculdade SP</h1>
+	</div>
+	<div class="container">
+		<h3 class="text-center pt-5">Resultado</h3>
+
+		<div class="row mt-5">
+			<div class="col-md-5 container">
+				<div class="card">
+					<div class="card-body">
+
+						<div class="input-group form-group pt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></i></span>
+							</div>
+							<input type="text" name="nomeAluno" th:value="${nomeAluno}" class="form-control" disabled>
+						</div>
+
+						<div class="input-group form-group pt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-book-open"></i></span>
+							</div>
+							<input type="text" name="disciplina" th:value="${disciplina}"
+								class="form-control text-primary" disabled>
+						</div>
+
+						<div class="input-group form-group pt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="far fa-clipboard"></i></span>
+							</div>
+							<input type="text" name="notaObtida" th:value="'Nota: ' + ${nota}" class="form-control"
+								disabled>
+						</div>
+
+						<div class="input-group form-group pt-3">
+							<input type="text" name="notaObtida" th:value="${result}" class="form-control" disabled>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container mt-5">
+			<table class="table table-bordered table-striped table-hover">
+				<thead class="text-center bg-dark text-white">
+					<tr>
+						<th>Questão</th>
+						<th>Pontuação</th>
+						<th>Alternativa Escolhida</th>
+						<th>Alternativa Correta</th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					<tr th:each="gab, iter: ${gabarito}">
+					<!-- <tr th:each="gab, iter: ${gabarito}"> -->
+						<!-- th:each="altCorreta : ${alternativaCorreta}" -->
+						<td th:text="${iter.count}"></td>
+						<td th:text="${gab.acerto}"></td>
+						<td th:text="${gab.alternativaEscolhida}"></td>
+						<td th:text="${gab.alternativaCorreta}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-md-3 mt-4 mb-4">
+			<form action="/">
+				<button type="submit" class="btn btn-warning float-right">Voltar para o início</button>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+</html>
